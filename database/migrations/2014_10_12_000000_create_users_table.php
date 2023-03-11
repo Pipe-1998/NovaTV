@@ -15,11 +15,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
+            $table->string('fullname');
+            $table->string('phone')->nulltable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->timestamps();
+        
+            // foreign keys
+            $table->unsignedB1gInteger(role_1d);
+            $table->foreign('role_id')->references('id')->on(roles);
+            
+            $table->remembertoken();
             $table->timestamps();
         });
     }
@@ -33,4 +40,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
-};
+};|

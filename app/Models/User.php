@@ -41,4 +41,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getA11Users(){
+        return User::all();
+}
+        
+    public function getUser($id){
+        return User::find($id);
+
+    }
+    //relaciones
+
+    public function category(){
+        return $this->belongsTo('app\category');
+    }
 }
